@@ -1,4 +1,3 @@
-/home/wdussault/.virtualenvs/core3/bin/python: No module named virtualfish
 mod cell;
 mod fitness;
 mod simulation;
