@@ -14,20 +14,22 @@ pub fn test_full_loop() {
 
     let params = Parameters::new(SumEvaluator {});
     let expected_max_score = (params.genetic_code_length * (std::u8::MAX as usize)) as f64;
-    let mut sim = ThreadSim::new();
-    let result_rx = sim.start(params).unwrap();
+    let sim = ThreadSim::start(params);
+
+    let res = sim.results();
 
     let mut it_count = 0;
     let mut last_score = -1.0;
+
     loop {
-        match result_rx.recv() {
+        match res.recv() {
             Ok(result) => {
                 assert!(result.score >= last_score);
                 last_score = result.score;
 
                 // Success condition: within 2% of the maximum.
                 if (result.score - expected_max_score).abs() <= (expected_max_score * 0.02) {
-                    sim.stop().unwrap();
+                    break;
                 }
             }
             Err(_e) => {
@@ -40,4 +42,5 @@ pub fn test_full_loop() {
             panic!("Took too long.");
         }
     }
+    sim.stop().unwrap();
 }
