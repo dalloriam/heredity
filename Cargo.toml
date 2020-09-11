@@ -1,5 +1,7 @@
 [package]
 name = "heredity"
+description = "A minimal genetic algorithm library."
+license = "MIT"
 version = "0.2.0"
 authors = ["William Dussault <dalloriam@gmail.com>"]
 edition = "2018"
