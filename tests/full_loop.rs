@@ -1,4 +1,4 @@
-use gene::{FitnessEvaluator, Parameters, ThreadSim};
+use heredity::{FitnessEvaluator, Parameters, ThreadSim};
 
 struct SumEvaluator {}
 

@@ -14,6 +14,7 @@ impl Cell {
     }
 
     pub fn breed(&self, other: &Self) -> Vec<u8> {
+        // TODO: Provide different breeding algorithms.
         assert_eq!(self.genetic_code.len(), other.genetic_code.len());
         let pivot: usize = self.genetic_code.len() / 2;
         return [&self.genetic_code[..pivot], &other.genetic_code[pivot..]].concat();

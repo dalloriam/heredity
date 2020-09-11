@@ -100,6 +100,7 @@ where
     }
 
     fn do_mutations(&self, population: &mut HashMap<u64, Cell>) {
+        // TODO: Provide different mutation algorithms (or allow the user to extend).
         let mut rng = rand::thread_rng();
         for (_key, cell) in population.iter_mut() {
             let throw: f64 = rng.gen();
