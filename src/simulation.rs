@@ -20,11 +20,11 @@ impl<T> Simulation<T>
 where
     T: FitnessEvaluator + Send + Sync,
 {
-    pub fn new(p: Parameters<T>) -> Simulation<T> {
-        return Simulation {
-            params: p,
+    pub fn new(params: Parameters<T>) -> Simulation<T> {
+        Simulation {
+            params,
             current_id: 0,
-        };
+        }
     }
 
     fn generate_population(&mut self) -> HashMap<u64, Cell> {
@@ -39,7 +39,7 @@ where
             self.current_id += 1;
         }
 
-        return population;
+        population
     }
 
     fn evaluate_fitness(&self, population: &mut HashMap<u64, Cell>) {
@@ -60,9 +60,7 @@ where
                 .unwrap_or(Less)
         });
 
-        let id_of_best_cell = selected_individual_ids
-            .get(selected_individual_ids.len() - 1)
-            .unwrap();
+        let id_of_best_cell = selected_individual_ids.last().unwrap();
 
         let amount_to_trim =
             ((selected_individual_ids.len() as f64) * (1.0 - self.params.keep_threshold)) as usize;
