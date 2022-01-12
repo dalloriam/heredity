@@ -10,4 +10,4 @@ edition = "2018"
 
 [dependencies]
 rand = "0.8.0"
-snafu = "0.6"
+snafu = "0.7"

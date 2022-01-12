@@ -43,21 +43,25 @@ where
         }
     }
 
+    #[must_use]
     pub fn with_population_size(mut self, population_size: usize) -> Self {
         self.population_size = population_size;
         self
     }
 
+    #[must_use]
     pub fn with_genetic_code_length(mut self, length: usize) -> Self {
         self.genetic_code_length = length;
         self
     }
 
+    #[must_use]
     pub fn with_keep_threshold(mut self, threshold: f64) -> Self {
         self.keep_threshold = threshold;
         self
     }
 
+    #[must_use]
     pub fn with_mutation_chance_percent(mut self, mutation_chance: f64) -> Self {
         self.mutation_chance_percent = mutation_chance;
         self
@@ -71,7 +75,7 @@ mod tests {
 
     struct MockEvaluator;
     impl FitnessEvaluator for MockEvaluator {
-        fn evaluate(&self, _code: &Vec<u8>) -> f64 {
+        fn evaluate(&self, _code: &[u8]) -> f64 {
             0.0
         }
     }
